@@ -51,25 +51,26 @@ function PlantDiseaseDetection() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-[420px] text-center">
-        <h1 className="text-3xl font-bold mb-4 text-gray-700">🍃 Medicinal Plant Classification</h1>
+      <div className="bg-white p-8 rounded-xl shadow-lg w-[450px] flex flex-col items-center">
+        <h1 className="text-3xl font-bold mb-4 text-gray-700 text-center">
+          🍃 Medicinal Plant Classification
+        </h1>
 
         {/* File Input */}
         <input
           type="file"
           accept="image/*"
           onChange={handleImageChange}
-          className="w-full border p-2 rounded-lg cursor-pointer"
+          className="w-full border p-2 rounded-lg cursor-pointer text-center"
         />
 
-        {/* Image Preview */}
+        {/* Centered Image Preview Inside the Box */}
         {preview && (
-          <div className="mt-4">
-            <p className="text-lg font-semibold text-gray-600">Selected Image:</p>
+          <div className="mt-4 w-full flex justify-center">
             <img
               src={preview}
               alt="Uploaded Preview"
-              className="mt-3 w-full max-h-60 object-contain rounded-lg border shadow-md"
+              className="w-56 h-56 object-cover rounded-lg border shadow-md"
             />
           </div>
         )}
@@ -85,12 +86,16 @@ function PlantDiseaseDetection() {
 
         {/* Prediction Results */}
         {predictions.length > 0 && (
-          <div className="mt-5 text-lg font-semibold text-gray-800 text-left">
+          <div className="mt-5 text-lg font-semibold text-gray-800 w-full text-center">
             <h2 className="text-xl mb-2">🌱 Species Identification</h2>
             {predictions.map((prediction, index) => (
-              <div key={index} className="mb-3 p-2 border rounded-lg shadow-sm bg-gray-50">
+              <div
+                key={index}
+                className="mb-3 p-3 border rounded-lg shadow-sm bg-gray-50"
+              >
                 <p className="text-lg font-medium">
-                  {prediction.name} <span className="text-green-600">({prediction.confidence}%)</span>
+                  {prediction.name}{" "}
+                  <span className="text-green-600">({prediction.confidence}%)</span>
                 </p>
                 <a
                   href={`https://www.google.com/search?q=${prediction.name}`}
